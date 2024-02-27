@@ -29,8 +29,6 @@ sed -i 's/ppp-mod-pppoe/ppp-mod-pppoe default-settings luci curl/g' include/targ
 git clone -b Lienol-default-settings https://github.com/yuos-bit/other package/default-settings
 git clone -b main --single-branch https://github.com/yuos-bit/other package/yuos
 
-# 添加4.14内核ACC、shortcut-fe补丁
-
 # 拉取设置向导
 git clone -b main https://github.com/0xACE8/openwrt-quickstart.git package/yuos/quickstart
 
