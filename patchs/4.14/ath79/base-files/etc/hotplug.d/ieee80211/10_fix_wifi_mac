@@ -30,11 +30,11 @@ case "$board" in
 		[ "$PHYNBR" -eq 1 ] && \
 			echo $(k2t_get_mac "lan_mac") > /sys${DEVPATH}/macaddress
 		;;
-  zte,e8820v1)
+  	zte,e8820v1)
 		# There is no eeprom data for 5 GHz wlan in "art" partition
 		# which would allow to patch the macaddress
 		[ "$PHYNBR" -eq 0 ] && \
-			echo $(macaddr_add "$(mtd_get_mac_ascii u-boot-env ethaddr)" 1) > /sys${DEVPATH}/macaddress
+			echo $(macaddr_add "$(mtd_get_mac_binary art 0)" 1) > /sys${DEVPATH}/macaddress
 		;;
 	*)
 		;;
