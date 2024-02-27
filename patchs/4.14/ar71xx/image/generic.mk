@@ -1016,12 +1016,13 @@ endef
 TARGET_DEVICES += xd3200
 
 define Device/e8820v1
-  $(Device/sr3200)
   DEVICE_TITLE := ZTE E8820V1
-  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca988x-ct
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb2 kmod-usb-ledtrig-usbport kmod-ath10k-ct ath10k-firmware-qca988x-ct
   BOARDNAME := E8820V1
+  MTDPARTS := spi0.0:256k(u-boot)ro,64k(u-boot-env),64k(factory),15872k(firmware),64k(art)ro
+  IMAGE_SIZE := 15872k
 endef
-TARGET_DEVICES += E8820V1
+TARGET_DEVICES += e8820v1
 
 define Device/t830
   DEVICE_TITLE := YunCore T830
