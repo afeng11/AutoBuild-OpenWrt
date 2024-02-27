@@ -53,7 +53,7 @@ on:
         type: boolean
   
 env:
-  REPO_URL: https://github.com/yuos-bit/openwrt
+  REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/21.02/Yuos_${{ github.event.inputs.model }}.config
@@ -103,12 +103,6 @@ jobs:
         
     - name: 更新插件
       run: cd openwrt && ./scripts/feeds clean && ./scripts/feeds update -a
-    
-    - name: 删除fullconenat-nft
-      run: |
-          cd openwrt
-          rm -rf feeds/small8/fullconenat-nft
-          rm -rf feeds/small8/fullconenat
 
     - name: 安装插件
       run: cd openwrt && ./scripts/feeds install -a
