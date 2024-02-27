@@ -63,7 +63,7 @@ on:
   #   types: [started]                  # 点击 star 之后
   
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_URL: https://github.com/Lienol/openwrt
   REPO_BRANCH: openwrt-19.07
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/19.07/Yuos_${{ github.event.inputs.model }}.config
@@ -117,13 +117,6 @@ jobs:
 
     - name: 更新插件
       run: cd openwrt && ./scripts/feeds update -a
-
-    - name: 降级fullconenat-nft
-      run: |
-          cd openwrt
-          rm -rf feeds/small8/fullconenat
-          rm -rf feeds/small8/fullconenat-nft
-          cp -rf $GITHUB_WORKSPACE/patchs/firewall/fullconenat package/fullconenat
 
     - name: 安装插件
       run: cd openwrt && ./scripts/feeds install -a
