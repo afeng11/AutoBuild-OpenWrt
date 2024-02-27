@@ -37,7 +37,7 @@
 
 #define E8820V1_KEYS_POLL_INTERVAL	20
 #define E8820V1_KEYS_DEBOUNCE_INTERVAL	\
-		(3 * E8820V1_XD3200_KEYS_POLL_INTERVAL)
+		(3 * E8820V1_KEYS_POLL_INTERVAL)
 
 #define E8820V1_WMAC_CALDATA_OFFSET	0x1000
 #define E8820V1_PCIE_CALDATA_OFFSET	0x5000
@@ -183,7 +183,7 @@ static void __init e8820v1_setup(void)
 	e8820v1_qca833x_data.leds = e8820v1_leds_qca833x;
 	e8820v1_qca833x_data.num_leds = ARRAY_SIZE(e8820v1_leds_qca833x);
 
-	e8820v1_xd3200_common_setup();
+	e8820v1_common_setup();
 
 	ath79_register_leds_gpio(-1, ARRAY_SIZE(e8820v1_leds_gpio),
 				 e8820v1_leds_gpio);
