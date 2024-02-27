@@ -10,7 +10,7 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 # 适配E8820V1
-cp -rf $GITHUB_WORKSPACE/patchs/4.14/ar71xx/* target/linux/ar71xx
+cp -rf $GITHUB_WORKSPACE/patchs/4.14/ath79/* target/linux/ath79
 
 # 修改软件包版本为大杂烩-openwrt19.07
 sed -i 's/git.openwrt.org\/feed\/packages.git;openwrt-19.07/github.com\/Lienol\/openwrt-packages.git;19.07/g' feeds.conf.default
