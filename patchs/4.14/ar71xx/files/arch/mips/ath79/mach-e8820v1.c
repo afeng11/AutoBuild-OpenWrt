@@ -175,6 +175,7 @@ static void __init e8820v1_common_setup(void)
 	ath79_register_gpio_keys_polled(-1, E8820V1_KEYS_POLL_INTERVAL,
 					ARRAY_SIZE(e8820v1_gpio_keys),
 					e8820v1_gpio_keys);
+	ath79_register_pci();
 	ath79_register_usb();
 }
 
