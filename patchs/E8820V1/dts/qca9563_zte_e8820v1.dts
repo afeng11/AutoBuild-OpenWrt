@@ -23,7 +23,7 @@
 
 		led_system: system {
 			label = "green:system";
-			gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
 			default-state = "keep";
 		};
 
@@ -31,6 +31,24 @@
 			label = "blue:wlan2g";
 			gpios = <&gpio 19 GPIO_ACTIVE_LOW>;
 			linux,default-trigger = "phy1tpt";
+		};
+
+		wlan5g {
+			label = "green:wlan5g";
+			gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
+			linux,default-trigger = "phy0tpt";
+		};
+		
+		wps {
+			label = "green:wps";
+			gpios = <&gpio 7 GPIO_ACTIVE_LOW>;
+		};
+		
+		usb {
+			label = "green:usb";
+			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
+			trigger-sources = <&hub_port0>,<&hub_port1>;
+			linux,default-trigger = "usbport";
 		};
 	};
 
@@ -40,6 +58,21 @@
 		reset {
 			linux,code = <KEY_RESTART>;
 			gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
+			debounce-interval = <60>;
+		};
+		
+		wps {
+			label = "WPS button";
+			linux,code = <KEY_WPS_BUTTON>;
+			gpios = <&gpio 21 GPIO_ACTIVE_LOW>;
+			debounce-interval = <60>;
+		};
+		
+		wifi {
+			label = "WiFi button";
+			linux,code = <KEY_RFKILL>;
+			gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
+			linux,input-type = <EV_SW>;
 			debounce-interval = <60>;
 		};
 	};
@@ -85,6 +118,14 @@
 	};
 };
 
+&uart {
+	status = "okay";
+};
+
+&gpio {
+	status = "okay";
+};
+
 &spi {
 	status = "okay";
 
@@ -109,10 +150,17 @@
 				reg = <0x040000 0x010000>;
 			};
 
+			
 			partition@50000 {
-			    compatible = "denx,uimage";
-			    label = "firmware";
-			    reg = <0x050000 0xf50000>; /* 适配32MB闪存 */
+				label = "factory";
+				reg = <0x050000 0x010000>;
+				read-only;
+			};
+
+			partition@60000 {
+				compatible = "denx,uimage";
+				label = "firmware";
+				reg = <0x060000 0xf80000>;
 			};
 
 			art: partition@ff0000 {
