@@ -2305,9 +2305,7 @@ define Device/zte_e8820v1
   SOC := qca9563
   DEVICE_VENDOR := ZTE
   DEVICE_MODEL := E8820V1
-  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca988x-ct kmod-usb3 kmod-usb-ledtrig-usbport
-  IMAGE_SIZE := 32448k
-  IMAGES += 32MB-breed.bin
-  IMAGE/32MB-breed.bin := $$(IMAGE/sysupgrade.bin) | yuncore-tftp-header-16m
+  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca988x-ct kmod-usb2 kmod-usb3 kmod-usb-ledtrig-usbport
+  IMAGE_SIZE := 15872k
 endef
 TARGET_DEVICES += zte_e8820v1
