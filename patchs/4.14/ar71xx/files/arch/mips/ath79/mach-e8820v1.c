@@ -34,6 +34,7 @@
 
 #define E8820V1_GPIO_BTN_RESET	2
 #define E8820V1_GPIO_BTN_WPS	21
+#define E8820V1_GPIO_BTN_RFKILL	1
 
 #define E8820V1_KEYS_POLL_INTERVAL	20
 #define E8820V1_KEYS_DEBOUNCE_INTERVAL	\
@@ -41,6 +42,11 @@
 
 #define E8820V1_WMAC_CALDATA_OFFSET	0x1000
 #define E8820V1_PCIE_CALDATA_OFFSET	0x5000
+
+static const char *e8820v1_part_probes[] = {
+	"zte",
+	NULL,
+};
 
 static struct flash_platform_data e8820v1_flash_data = {
 	.part_probes	= e8820v1_part_probes,
@@ -76,7 +82,7 @@ static struct gpio_led e8820v1_leds_gpio[] __initdata = {
 
 static struct gpio_keys_button e8820v1_gpio_keys[] __initdata = {
 	{
-		.desc		= "reset",
+		.desc		= "Reset button",
 		.type		= EV_KEY,
 		.code		= KEY_RESTART,
 		.debounce_interval = E8820V1_KEYS_DEBOUNCE_INTERVAL,
@@ -84,12 +90,19 @@ static struct gpio_keys_button e8820v1_gpio_keys[] __initdata = {
 		.active_low	= 1,
 	},
 	{
-		.desc		= "wps",
+		.desc		= "Wps button",
 		.type		= EV_KEY,
 		.code		= KEY_WPS_BUTTON,
 		.debounce_interval = E8820V1_KEYS_DEBOUNCE_INTERVAL,
 		.gpio		= E8820V1_GPIO_BTN_WPS,
 		.active_low	= 1,
+	},
+	{
+		.desc		= "RFKILL switch",
+		.type		= EV_SW,
+		.code		= KEY_RFKILL,
+		.debounce_interval = ARCHER_C7_KEYS_DEBOUNCE_INTERVAL,
+		.gpio		= ARCHER_C7_GPIO_BTN_RFKILL,
 	},
 };
 
@@ -141,6 +154,7 @@ static void __init e8820v1_common_setup(void)
 
 	ath79_register_m25p80(e8820v1_flash_data);
 
+	ath79_register_pci();
 	ath79_register_mdio(0, 0x0);
 	mdiobus_register_board_info(e8820v1_mdio0_info,
 				    ARRAY_SIZE(e8820v1_mdio0_info));
@@ -175,7 +189,6 @@ static void __init e8820v1_common_setup(void)
 	ath79_register_gpio_keys_polled(-1, E8820V1_KEYS_POLL_INTERVAL,
 					ARRAY_SIZE(e8820v1_gpio_keys),
 					e8820v1_gpio_keys);
-	ath79_register_pci();
 	ath79_register_usb();
 }
 
