@@ -756,6 +756,7 @@ som9331)
 e8820v1|\
 sr3200)
 	ucidef_set_led_wlan "wlan2g" "WLAN2G" "$board:green:wlan2g" "phy1tpt"
+	ucidef_set_led_wlan "wlan5g" "WLAN5G" "$board:green:wlan5g" "phy0tpt"
 	;;
 tellstick-znet-lite)
 	ucidef_set_led_netdev "lan_act" "LANACT" "tellstick:green:lan" "eth0" "tx rx"
