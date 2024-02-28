@@ -45,7 +45,7 @@ case "$FIRMWARE" in
 	ubnt,powerbeam-5ac-gen2|\
 	ubnt,unifiac-pro|\
 	yuncore,a770|\
-    zte,e8820v1|\
+    	zte,e8820v1|\
 	yuncore,xd3200)
 		caldata_extract "art" 0x5000 0x844
 		;;
