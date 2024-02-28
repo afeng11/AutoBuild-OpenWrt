@@ -546,6 +546,10 @@ ath79_setup_macs()
 		lan_mac=$(mtd_get_mac_ascii devdata "lanmac")
 		wan_mac=$(mtd_get_mac_ascii devdata "wanmac")
 		;;
+	zte,e8820v1)
+		lan_mac=$(mtd_get_mac_binary art 0x0)
+		wan_mac=$(mtd_get_mac_binary art 0x6)
+		;;
 	elecom,wrc-1750ghbk2-i|\
 	elecom,wrc-300ghbk2-i)
 		wan_mac=$(macaddr_add "$(mtd_get_mac_binary art 0x1002)" -2)
