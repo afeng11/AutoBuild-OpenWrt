@@ -155,12 +155,18 @@
 	status = "okay";
 
 	pll-data = <0x03000101 0x00000101 0x00001919>;
+	mtd-mac-address = <&art 0x0>;
 	phy-mode = "sgmii";
 	phy-handle = <&phy0>;
 };
 
 &pcie {
 	status = "okay";
+
+	wifi@0,0 {
+		compatible = "pci168c,0056";
+		reg = <0x0000 0 0 0 0>;
+	};
 };
 
 &wmac {
