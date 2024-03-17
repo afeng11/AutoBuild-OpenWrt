@@ -14,7 +14,7 @@
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 # 修改网关
 sed -i 's/192.168.$((addr_offset++)).1/192.168.$((addr_offset++)).1/g' package/base-files/files/bin/config_generate
-# 修改默认wifi名称ssid为Zte-Wifi
-sed -i 's/ssid=OpenWrt/ssid=Zte_$(cat /sys/class/ieee80211/${dev}/macaddress|awk –F ":" '{print $4""$5""$6 }'| tr a-z A-Z)/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# 修改默认wifi名称ssid为Zte_1
+sed -i 's/ssid=OpenWrt/ssid=Zte_${devidx}/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 #修改默认wifi开启
 sed -i 's/wireless.radio${devidx}.disabled=1/wireless.radio${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
