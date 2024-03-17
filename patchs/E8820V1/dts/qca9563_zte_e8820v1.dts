@@ -1,38 +1,36 @@
 // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 
-#include "qca956x.dtsi"
-
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
 
+#include "qca956x.dtsi"
+
 / {
-	compatible = "zte,e8820v1", "qca,qca9563";
 	model = "ZTE E8820V1";
+	compatible = "zte,e8820v1", "qca,qca9563";
 
 	aliases {
-		label-mac-device = &eth0;
-		led-boot = &led_system;
-		led-failsafe = &led_system;
-		led-running = &led_system;
-		led-upgrade = &led_system;
+		led-boot = &power;
+		led-failsafe = &power;
+		led-running = &power;
+		led-upgrade = &power;
 	};
-
 
 	leds {
 		compatible = "gpio-leds";
 
-		led_system: system {
-			label = "green:system";
+		power: power {
+			label = "green:power";
 			gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
-			default-state = "keep";
+			default-state = "on";
 		};
 
 		wlan2g {
-			label = "blue:wlan2g";
+			label = "green:wlan2g";
 			gpios = <&gpio 19 GPIO_ACTIVE_LOW>;
 			linux,default-trigger = "phy1tpt";
 		};
-
+		
 		wlan5g {
 			label = "green:wlan5g";
 			gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
@@ -56,6 +54,7 @@
 		compatible = "gpio-keys";
 
 		reset {
+			label = "Reset button";
 			linux,code = <KEY_RESTART>;
 			gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
 			debounce-interval = <60>;
@@ -68,42 +67,13 @@
 			debounce-interval = <60>;
 		};
 		
-		wifi {
+		wifi_button {
 			label = "WiFi button";
 			linux,code = <KEY_RFKILL>;
 			gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
-			linux,input-type = <EV_SW>;
 			debounce-interval = <60>;
 		};
 	};
-};
-
-&eth0 {
-	status = "okay";
-
-	pll-data = <0x03000101 0x00000101 0x00001919>;
-	phy-mode = "sgmii";
-	phy-handle = <&phy0>;
-	mtd-mac-address = <&art 0x0>;
-};
-
-&mdio0 {
-	status = "okay";
-
-	phy-mask = <0>;
-	phy0: ethernet-phy@0 {
-		reg = <0>;
-		phy-mode = "sgmii";
-
-		qca,ar8327-initvals = <
-			0x04 0x00080080 /* PORT0 PAD MODE CTRL */
-			0x7c 0x0000007e /* PORT0_STATUS */
-		>;
-	};
-};
-
-&pcie {
-	status = "okay";
 };
 
 &uart {
@@ -116,6 +86,7 @@
 
 &spi {
 	status = "okay";
+	num-cs = <1>;
 
 	flash@0 {
 		compatible = "jedec,spi-nor";
@@ -160,9 +131,35 @@
 	};
 };
 
-&wmac {
+&mdio0 {
 	status = "okay";
 
+	phy0: ethernet-phy@0 {
+		reg = <0>;
+		phy-mode = "sgmii";
+
+		qca,ar8327-initvals = <
+			0x04 0x00080080 /* PORT0 PAD MODE CTRL */
+			0x7c 0x0000007e /* PORT0_STATUS */
+		>;
+	};
+};
+
+&eth0 {
+	status = "okay";
+	
+	phy-mode = "sgmii";
+	phy-handle = <&phy0>;
+	mtd-mac-address = <&art 0x0>;
+};
+
+&pcie {
+	status = "okay";
+};
+
+&wmac {
+	status = "okay";
+	
 	mtd-cal-data = <&art 0x1000>;
 	mtd-mac-address = <&art 0x1002>;
 };
@@ -192,5 +189,3 @@
 		#trigger-source-cells = <0>;
 	};
 };
-
-
