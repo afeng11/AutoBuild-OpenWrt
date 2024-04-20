@@ -134,8 +134,9 @@
 		phy-mode = "sgmii";
 
 		qca,ar8327-initvals = <
-			0x04 0x00080080 /* PORT0 PAD MODE CTRL */
-			0x7c 0x0000007e /* PORT0_STATUS */
+			0x04 0x00080080 /* PAD0 */
+            0x7c 0x0000007e /* PORT0_STATUS */
+            0xe0 0xc74164de /* SGMII_CTRL */
 		>;
 	};
 };
@@ -143,7 +144,7 @@
 &eth0 {
 	status = "okay";
 	
-	mtd-mac-address = <&art 0x0>;
+	pll-data = <0x03000101 0x00000101 0x00001919>;
 	phy-mode = "sgmii";
 	phy-handle = <&phy0>;
 };
