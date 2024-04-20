@@ -100,7 +100,6 @@ case "$FIRMWARE" in
 		ath10kcal_extract "art" 20480 2116
 		ath10kcal_patch_mac $(mtd_get_mac_ascii devdata "wlan5mac")
 		;;
-	zte,e8820v1|\
 	elecom,wrc-1750ghbk2-i)
 		ath10kcal_extract "art" 20480 2116
 		;;
@@ -176,6 +175,9 @@ case "$FIRMWARE" in
 		ath10kcal_extract "EEPROM" 20480 2116
 		;;
 	yuncore,a770)
+		ath10kcal_extract "art" 20480 2116
+		;;
+	zte,e8820v1)
 		ath10kcal_extract "art" 20480 2116
 		;;
 	esac
