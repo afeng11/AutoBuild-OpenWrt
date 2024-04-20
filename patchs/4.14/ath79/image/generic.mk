@@ -678,7 +678,7 @@ define Device/zte_e8820v1
   ATH_SOC := qca9563
   DEVICE_TITLE := ZTE E8820V1
   IMAGE_SIZE := 15872k
-  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport kmod-ath10k-ct ath10k-firmware-qca988x-ct kmod-usb3
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb3
 endef
 TARGET_DEVICES += zte_e8820v1
 
