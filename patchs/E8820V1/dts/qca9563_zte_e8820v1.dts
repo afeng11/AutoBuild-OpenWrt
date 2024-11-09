@@ -7,8 +7,8 @@
 #include "qca956x.dtsi"
 
 / {
-	model = "ZTE E8820V1";
-	compatible = "zte,e8820v1", "qca,qca9563";
+	compatible = "zte,zte-e8820-v1", "qca,qca9563";
+	model = "Zte E8820 v1";
 
 	aliases {
 		led-boot = &power;
@@ -21,33 +21,43 @@
 		compatible = "gpio-leds";
 
 		power: power {
-			label = "green:power";
+			label = "blue:power";
 			gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
 			default-state = "on";
 		};
 
 		wlan2g {
-			label = "green:wlan2g";
+			label = "blue:wlan2g";
 			gpios = <&gpio 19 GPIO_ACTIVE_LOW>;
 			linux,default-trigger = "phy1tpt";
 		};
 		
 		wlan5g {
-			label = "green:wlan5g";
+			label = "blue:wlan5g";
 			gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
 			linux,default-trigger = "phy0tpt";
 		};
 		
 		wps {
-			label = "green:wps";
+			label = "blue:wps";
 			gpios = <&gpio 7 GPIO_ACTIVE_LOW>;
 		};
 		
 		usb {
-			label = "green:usb";
+			label = "blue:usb";
 			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
 			trigger-sources = <&hub_port0>,<&hub_port1>;
 			linux,default-trigger = "usbport";
+		};
+		
+		wifi_red {
+			label = "red:wifi_red";
+			gpios = <&gpio 14 GPIO_ACTIVE_LOW>;
+		};
+		
+		wifi_blue {
+			label = "blue:wifi_blue";
+			gpios = <&gpio 9 GPIO_ACTIVE_LOW>;
 		};
 	};
 
@@ -126,6 +136,10 @@
 	};
 };
 
+&pcie {
+	status = "okay";
+};
+
 &mdio0 {
 	status = "okay";
 	phy-mask = <0>;
@@ -134,9 +148,8 @@
 		phy-mode = "sgmii";
 
 		qca,ar8327-initvals = <
-	    0x04 0x00080080 /* PAD0 */
-            0x7c 0x0000007e /* PORT0_STATUS */
-            0xe0 0xc74164de /* SGMII_CTRL */
+			0x04 0x00080080 /* PORT0 PAD MODE CTRL */
+			0x7c 0x0000007e /* PORT0_STATUS */
 		>;
 	};
 };
@@ -144,18 +157,17 @@
 &eth0 {
 	status = "okay";
 	
-	pll-data = <0x03000101 0x00000101 0x00001919>;
 	phy-mode = "sgmii";
 	phy-handle = <&phy0>;
-};
-
-&pcie {
-	status = "okay";
+	mtd-mac-address = <&art 0x0>;
+	mtd-mac-address-increment = <1>;
 };
 
 &wmac {
 	status = "okay";
 	mtd-cal-data = <&art 0x1000>;
+	mtd-mac-address = <&art 0x0>;
+	mtd-mac-address-increment = <(-1)>;
 };
 
 &usb0 {
