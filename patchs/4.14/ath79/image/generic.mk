@@ -674,13 +674,14 @@ define Device/rosinson_wr818
 endef
 TARGET_DEVICES += rosinson_wr818
 
-define Device/zte_e8820v1
+define Device/zte_zte-e8820-v1
   ATH_SOC := qca9563
-  DEVICE_TITLE := ZTE E8820V1
-  IMAGE_SIZE := 15872k
-  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb3
+  DEVICE_TITLE := Zte E8820 v1
+  IMAGE_SIZE := 16000k
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb3 ath10k-firmware-qca988x-ct
+  SUPPORTED_DEVICES += zte-e8820-v1
 endef
-TARGET_DEVICES += zte_e8820v1
+TARGET_DEVICES += zte_zte-e8820-v1
 
 define Device/wd_mynet-n750
   $(Device/seama)
