@@ -11,3 +11,4 @@
 #
 # 适配E8820V1
 cp -rf $GITHUB_WORKSPACE/patchs/4.14/ath79/* target/linux/ath79
+cp -rf $GITHUB_WORKSPACE/patchs/4.14/files/* package/kernel/mac80211
