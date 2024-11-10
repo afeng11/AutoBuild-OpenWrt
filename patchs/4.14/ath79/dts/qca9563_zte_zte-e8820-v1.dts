@@ -160,14 +160,13 @@
 	phy-mode = "sgmii";
 	phy-handle = <&phy0>;
 	mtd-mac-address = <&art 0x0>;
-	mtd-mac-address-increment = <1>;
+	mtd-mac-address-increment = <2>;
 };
 
 &wmac {
 	status = "okay";
 	mtd-cal-data = <&art 0x1000>;
 	mtd-mac-address = <&art 0x0>;
-	mtd-mac-address-increment = <(-1)>;
 };
 
 &usb0 {
