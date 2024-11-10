@@ -10,7 +10,7 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #=================================================
 # 修改默认编译LUCI进系统
-sed -i 's/ppp-mod-pppoe/iptables-mod-tproxy iptables-mod-extra ipset ip-full ppp-mod-pppoe curl ca-certificates/g' include/target.mk
+#sed -i 's/ppp-mod-pppoe/iptables-mod-tproxy iptables-mod-extra ipset ip-full ppp-mod-pppoe curl ca-certificates/g' include/target.mk
 
 # 单独拉取软件包
-git clone -b Lienol-default-settings https://github.com/yuos-bit/other package/default-settings
+#git clone -b Lienol-default-settings https://github.com/yuos-bit/other package/default-settings
