@@ -180,10 +180,6 @@
 	};
 };
 
-&usb_phy1 {
-	status = "okay";
-};
-
 &usb1 {
 	#address-cells = <1>;
 	#size-cells = <0>;
