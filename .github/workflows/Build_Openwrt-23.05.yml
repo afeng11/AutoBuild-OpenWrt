@@ -7,7 +7,7 @@
 # https://github.com/P3TERX/Actions-OpenWrt
 # Description: Build OpenWrt using GitHub Actions
 
-name: 云编译Openwrt官方22.03固件
+name: 云编译Openwrt官方21.02固件
 
 on:
   repository_dispatch:
@@ -54,9 +54,9 @@ on:
   
 env:
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: 22.03
+  REPO_BRANCH: 21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/23.05/Yuos_${{ github.event.inputs.model }}.config
+  CONFIG_FILE: config/19.07/Yuos_${{ github.event.inputs.model }}.config
   DIY_P1_SH: diy-part8.sh
   DIY_P2_SH: diy-part9.sh
   UPLOAD_RELEASE: true
@@ -64,7 +64,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
     - name: 检查工作流
