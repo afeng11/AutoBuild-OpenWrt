@@ -7,8 +7,8 @@
 #include "qca956x.dtsi"
 
 / {
-	compatible = "zte,zte-e8820-v1", "qca,qca9563";
-	model = "Zte E8820 v1";
+	compatible = "zte,e8820v1", "qca,qca9563";
+	model = "ZTE E8820 v1";
 
 	aliases {
 		led-boot = &power;
