@@ -286,7 +286,7 @@ ath79_setup_interfaces()
 		ucidef_add_switch "switch0" \
 			"0@eth0" "3:lan:1" "4:lan:2"
 		;;
-	zte,zte-e8820-v1)
+	zte,e8820v1)
 		ucidef_add_switch "switch0" \
 			"0@eth0" "1:lan:4" "2:lan:3" "3:lan:2" "4:lan:1" "5:wan"
 		;;
@@ -396,7 +396,7 @@ ath79_setup_macs()
 	wd,mynet-wifi-rangeextender)
 		lan_mac=$(nvram get et0macaddr)
 		;;
-	zte,zte-e8820-v1)
+	zte,e8820v1)
 		wan_mac=$(macaddr_add "$(mtd_get_mac_binary art 0x0)" +2)
 		;;
 	esac
