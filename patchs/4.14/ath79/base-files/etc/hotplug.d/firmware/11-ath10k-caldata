@@ -177,7 +177,7 @@ case "$FIRMWARE" in
 	yuncore,a770)
 		ath10kcal_extract "art" 20480 2116
 		;;
-	zte,zte-e8820-v1)
+	zte,e8820v1)
 		ath10kcal_extract "art" 20480 2116
 		ath10kcal_patch_mac $(macaddr_add $(mtd_get_mac_binary art 0) +1)
 		;;
